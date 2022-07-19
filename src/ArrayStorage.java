@@ -6,8 +6,7 @@ public class ArrayStorage {
     int size = 0;
 
     void clear() {
-        for (int i = 0; i < size; i++)
-        {
+        for (int i = 0; i < size; i++) {
             storage[i] = null;
         }
         size = 0;
@@ -19,6 +18,11 @@ public class ArrayStorage {
     }
 
     Resume get(String uuid) {
+        for (int i = 0; i < size; i++) {
+            if (uuid.equals(storage[i].uuid.toString())) {
+                return storage[i];
+            }
+        }
         return null;
     }
 
