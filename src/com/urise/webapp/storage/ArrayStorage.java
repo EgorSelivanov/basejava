@@ -8,22 +8,23 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    private Resume[] storage = new Resume[10000];
+    private static final int STORAGE_LIMIT = 10000;
+    private Resume[] storage = new Resume[STORAGE_LIMIT];
     private int size = 0;
 
     public void clear() {
-        Arrays.fill(storage, 0, size - 1, null);
+        Arrays.fill(storage, 0, size, null);
         size = 0;
     }
 
     public void save(Resume r) {
         if (getIndexResume(r.getUuid()) != -1)
             System.out.println("Error! A resume with this id already exists!");
-        else if (size >= storage.length)
-                System.out.println("Error! Storage overflow!");
-         else {
-             storage[size] = r;
-             size++;
+        else if (size >= STORAGE_LIMIT)
+            System.out.println("Error! Storage overflow!");
+        else {
+            storage[size] = r;
+            size++;
         }
     }
 
